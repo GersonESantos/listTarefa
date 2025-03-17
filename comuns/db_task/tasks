@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS `bd_tasks`.`tasks` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_user` INT NOT NULL,
+  `task_description` TEXT NOT NULL,
+  `status` ENUM('pendente', 'em progresso', 'concluído') NOT NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `id_user` (`id_user` ASC) VISIBLE,
+  CONSTRAINT `tasks_ibfk_1`
+    FOREIGN KEY (`id_user`)
+    REFERENCES `bd_tasks`.`users` (`id`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 11
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci
